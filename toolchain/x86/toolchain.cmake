@@ -9,11 +9,11 @@ set(CMAKE_C_COMPILER ${CMAKE_TOOLCHAIN_PREFIX}-gcc)
 set(CMAKE_CXX_COMPILER ${CMAKE_TOOLCHAIN_PREFIX}-g++)
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 
-set(CMAKE_C_FLAGS "-ffreestanding")
-set(CMAKE_C_FLAGS_DEBUG "-ggdb -W -Wall -Wextra -Winline")
+set(CMAKE_C_FLAGS "-ffreestanding" CACHE STRING "C flags" FORCE)
+set(CMAKE_C_FLAGS_DEBUG "-ggdb -W -Wall -Wextra -Winline" CACHE STRING "C flags for debug version" FORCE)
 
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/toolchain/x86/linker.ld)
-set(CMAKE_EXE_LINKER_FLAGS "-ffreestanding -nostdlib -T${LINKER_SCRIPT}")
+set(CMAKE_EXE_LINKER_FLAGS "-ffreestanding -nostdlib -T${LINKER_SCRIPT}" CACHE STRING "Linker flags" FORCE)
 
 set(CMAKE_FIND_ROOT_PATH ${CMAKE_SOURCE_DIR})
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
