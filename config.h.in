@@ -1,1 +1,6 @@
+#cmakedefine GIT_REVISION @GIT_REVISION@
 
+#ifndef STRINGIFY
+#define STRINGIFY(x) STRINGIFY_(x)
+#define STRINGIFY_(x) #x
+#endif

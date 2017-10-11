@@ -8,7 +8,11 @@
 
 #include <arch/x86/VGA/mode3.h>
 
+#include <config.h>
+
 void main(){
 	cls();
-	puts("Zenith80 starting up...");
+	puts("Zenith80 starting up...\n");
+	puts("Git revision: ");
+	puts(STRINGIFY(GIT_REVISION));
 }
