@@ -12,6 +12,10 @@ endif()
 # Enable assembly files
 ENABLE_LANGUAGE(ASM-ATT)
 
+if(NOT ZenithOS_ARCH)
+	message(FATAL_ERROR "Must specify target arch! (\"ZenithOS_ARCH\" entry)")
+endif()
+
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 
 project(ZenithOS VERSION 0.1.0.0 LANGUAGES C CXX ASM-ATT)
@@ -24,7 +28,7 @@ configure_file(
   )
 
 # ZenithOS_BINARY_DIR is needed so config.h can be included
-include_directories("${ZenithOS_BINARY_DIR}" "${ZenithOS_SOURCE_DIR}/headers")
+include_directories("${ZenithOS_BINARY_DIR}" "${ZenithOS_SOURCE_DIR}/headers" "${ZenithOS_SOURCE_DIR}/headers/arch/${ZenithOS_ARCH}")
 
 add_subdirectory(src/kernel)
 add_executable(zenithos.bin "${SOURCES}")

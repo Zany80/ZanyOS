@@ -6,7 +6,9 @@
  * This file contains the main kernel function.
  */
 
-#include <arch/x86/VGA/mode3.h>
+#include <VGA/mode3.hpp>
+using VGA::puts;
+using VGA::cls;
 
 #include <config.h>
 
@@ -15,4 +17,5 @@ void main(){
 	puts("Zenith80 starting up...\n");
 	puts("Git revision: ");
 	puts(STRINGIFY(GIT_REVISION));
+	VGA::putch(VGA::cursor.x,VGA::cursor.y,'\n',VGA::white,VGA::black);
 }

@@ -6,10 +6,10 @@
  * This file contains the VGA Mode 3 implementation. 
  */
 
-#include <arch/x86/VGA/mode3.h>
-#include <arch/x86/stdint.h>
+#include <VGA/mode3.hpp>
+#include <stdint.h>
 
-void putch(int x,int y,unsigned char c,color fg,color bg){
+void VGA::putch(int x,int y,unsigned char c,color fg,color bg){
 	/*
 	 * VGA text mode buffer starts at 0xB8000.
 	 * Lines are in memory one after another and are 80 characters in length.
@@ -36,13 +36,13 @@ void putch(int x,int y,unsigned char c,color fg,color bg){
 	}
 }
 
-void puts(const char * string){
+void VGA::puts(const char * string){
 	for(;(*string)!=0;string++){
 		putch(cursor.x,cursor.y,*string,white,black);
 	}
 }
 
-void cls(){
+void VGA::cls(){
 	for(int x=0;x<80;x++){
 		for(int y=0;y<25;y++){
 			volatile uint16_t * pos=(volatile uint16_t*)0xB8000 + (y*80+x);
@@ -52,7 +52,7 @@ void cls(){
 	cursor.x=cursor.y=0;
 }
 
-void scrollOnce(){
+void VGA::scrollOnce(){
 	/**
 	 * For each of the first 24 lines, copy the data from the line below it
 	 */

@@ -13,21 +13,25 @@
 
 #include <arch/x86/stdint.h>
 
-enum color{
-	black=0,blue,green,cyan,red,magenta,brown,light_gray,
-	dark_gray,light_blue,light_green,light_cyan,light_red,light_magenta,yellow,white
-};
+namespace VGA{
 
-typedef enum color color;
+	enum color{
+		black=0,blue,green,cyan,red,magenta,brown,light_gray,
+		dark_gray,light_blue,light_green,light_cyan,light_red,light_magenta,yellow,white
+	};
 
-void putch(int x,int y,unsigned char c,color fg,color bg);
-void puts(const char * string);
-void cls();
-void scrollOnce();
+	typedef enum color color;
 
-struct{
-	uint8_t x;
-	uint8_t y;
-}cursor;
+	void putch(int x,int y,unsigned char c,color fg,color bg);
+	void puts(const char * string);
+	void cls();
+	void scrollOnce();
+	
+	struct{
+		uint8_t x;
+		uint8_t y;
+	}cursor;
+
+}
 
 #endif
