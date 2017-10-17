@@ -8,8 +8,30 @@
 
 #include <VGA/mode3.hpp>
 #include <stdint.h>
+#include <string.h>
 
-void VGA::putch(int x,int y,unsigned char c,color fg,color bg){
+namespace VGA{
+	struct{
+		uint8_t x;
+		uint8_t y;
+	}cursor;
+}
+
+uint8_t VGA::getX(){
+	return cursor.x;
+}
+
+uint8_t VGA::getY(){
+	return cursor.y;
+}
+
+void VGA::puti(int i,int base,int n){
+	char buff[20];
+	itoa(i,buff,base,n);
+	puts(buff);
+}
+
+void VGA::putch(uint8_t x,uint8_t y,char c,color fg,color bg){
 	/*
 	 * VGA text mode buffer starts at 0xB8000.
 	 * Lines are in memory one after another and are 80 characters in length.

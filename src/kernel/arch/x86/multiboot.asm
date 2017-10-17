@@ -1,21 +1,19 @@
-/**
-	ZenithOS
-	Copyright Noam Preil 2017
-	Licensed under the Apache 2.0 license
-	
-	This file contains the multiboot header for the x86 architecture. The multiboot specification can be found at
-	https://www.gnu.org/software/grub/manual/multiboot/multiboot.html
-*/
+.section .text
 
-.set MAGIC, 0x1BADB002
+.global multiboot_validate
+multiboot_validate:
+	pushl %eax
+	movl stack_bottom,%eax
+	movl magic, %ebx
+	cmpl %eax, %ebx
+	jne .not_found
+	popl %eax
+	movl stack_bottom+4, %ebx
+	ret
+.not_found:
+	movl $0, %eax
+	jmp panic
 
-.set ALIGN, 1<<0
-.set MMAP, 1<<1
-.set FLAGS, ALIGN | MMAP
-.set CHECKSUM, 0-(FLAGS+MAGIC)
+.section .rodata
 
-.section .multiboot
-//multiboot header has to be 32-bit aligned - see https://www.gnu.org/software/grub/manual/multiboot/multiboot.html#OS-image-format
-.align 4
-
-.long MAGIC, FLAGS, CHECKSUM
+magic: .long 0x2BADB002

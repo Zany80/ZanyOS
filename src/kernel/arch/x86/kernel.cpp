@@ -7,15 +7,25 @@
  */
 
 #include <VGA/mode3.hpp>
-using VGA::puts;
 using VGA::cls;
+using VGA::puts;
+using VGA::puti;
+using VGA::putch;
+#include <multiboot.h>
 
 #include <config.h>
 
 void main(){
 	cls();
-	puts("Zenith80 starting up...\n");
 	puts("Git revision: ");
 	puts(STRINGIFY(GIT_REVISION));
-	VGA::putch(VGA::cursor.x,VGA::cursor.y,'\n',VGA::white,VGA::black);
+	putch(VGA::getX(),VGA::getY(),'\n',VGA::white,VGA::black);
+	puts("Zenith80 starting up...\n");
+	multiboot_header * header;
+	multiboot_validate();
+	asm("nop" : "=b"(header));
+	puts("Multiboot header at ");
+	puti((int)header,16,8);
+	puts(", parsing...\n");
+	parse_multiboot(header);
 }

@@ -11,7 +11,7 @@
 #ifndef _ZENITHOS_ARCH_X86_VGA_MODE3_H_
 #define _ZENITHOS_ARCH_X86_VGA_MODE3_H_
 
-#include <arch/x86/stdint.h>
+#include <stdint.h>
 
 namespace VGA{
 
@@ -21,16 +21,14 @@ namespace VGA{
 	};
 
 	typedef enum color color;
-
-	void putch(int x,int y,unsigned char c,color fg,color bg);
+	
+	void puti(int i,int base,int n);
+	void putch(uint8_t x,uint8_t y,char c,color fg,color bg);
 	void puts(const char * string);
 	void cls();
 	void scrollOnce();
-	
-	struct{
-		uint8_t x;
-		uint8_t y;
-	}cursor;
+	uint8_t getX();
+	uint8_t getY();
 
 }
 
