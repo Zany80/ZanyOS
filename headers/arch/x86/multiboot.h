@@ -3,9 +3,9 @@
  * Copyright Noam Preil 2017
  * Licensed under the Apache 2.0 license
  * 
- * This file contains the VGA Mode 3 interface for the x86 architecture. VGA mode 3 is a text mode.
+ * This file contains the multiboot boot information interface for the x86 architecture.
  * 
- * More info can be found at http://wiki.osdev.org/Text_UI and https://en.wikipedia.org/wiki/VGA-compatible_text_mode
+ * See https://www.gnu.org/software/grub/manual/multiboot/multiboot.html#Boot-information-format for more information
  */
 
 #ifndef _ZENITHOS_ARCH_X86_MULTIBOOT_H_
@@ -84,6 +84,6 @@ typedef struct{
 } multiboot_mmap;
 
 extern "C" void multiboot_validate();
-extern "C" void parse_multiboot(multiboot_header* header);
+extern "C" void parse_multiboot(multiboot_header* header,bool print);
 
 #endif

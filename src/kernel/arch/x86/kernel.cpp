@@ -14,9 +14,12 @@ using VGA::putch;
 #include <multiboot.h>
 
 #include <config.h>
+#include <kernel.h>
 
 void main(){
 	cls();
+	puti(0xFFF,16,4);
+	panic(0xDEADBEEF);
 	puts("Git revision: ");
 	puts(STRINGIFY(GIT_REVISION));
 	putch(VGA::getX(),VGA::getY(),'\n',VGA::white,VGA::black);
@@ -27,5 +30,5 @@ void main(){
 	puts("Multiboot header at ");
 	puti((int)header,16,8);
 	puts(", parsing...\n");
-	parse_multiboot(header);
+	parse_multiboot(header,true);
 }

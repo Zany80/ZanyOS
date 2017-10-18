@@ -27,8 +27,17 @@ uint8_t VGA::getY(){
 
 void VGA::puti(int i,int base,int n){
 	char buff[20];
-	itoa(i,buff,base,n);
-	puts(buff);
+	if(base!=10&&(i&0xF0000000)){
+		itoa((i&0xF0000000)>>28,buff,base,1);
+		puts(buff);
+		base=-base;
+		itoa((i&0x0FFFFFFF),buff,base,n-1);
+		puts(buff);
+	}
+	else{
+		itoa(i,buff,base,n);
+		puts(buff);
+	}
 }
 
 void VGA::putch(uint8_t x,uint8_t y,char c,color fg,color bg){
