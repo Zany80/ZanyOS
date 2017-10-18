@@ -15,4 +15,4 @@ typedef struct{
 	uint8_t upper_base;
 } gdt_entry;
 
-////gdt_entry encode_gdt(
+gdt_entry encode_gdt(uint32_t base, uint32_t limit, uint8_t type);
