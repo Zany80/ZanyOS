@@ -6,6 +6,8 @@
  * This file contains the header for GDT manipulation.
  */
 
+#pragma once
+
 typedef struct{
 	uint16_t lower_limit;
 	uint16_t lower_base;

@@ -8,8 +8,7 @@
  * See https://www.gnu.org/software/grub/manual/multiboot/multiboot.html#Boot-information-format for more information
  */
 
-#ifndef _ZENITHOS_ARCH_X86_MULTIBOOT_H_
-#define _ZENITHOS_ARCH_X86_MULTIBOOT_H_
+#pragma once
 
 #include <stdint.h>
 
@@ -97,5 +96,3 @@ typedef struct{
 
 extern "C" void multiboot_validate();
 extern "C" void parse_multiboot(multiboot_header* header,bool print);
-
-#endif

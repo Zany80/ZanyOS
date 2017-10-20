@@ -8,6 +8,7 @@
 
 #include <kernel.h>
 #include <multiboot.h>
+#include <memory.h>
 #include <VGA/mode3.hpp>
 using VGA::putch;
 using VGA::puti;

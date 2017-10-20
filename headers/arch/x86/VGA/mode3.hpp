@@ -8,8 +8,7 @@
  * More info can be found at http://wiki.osdev.org/Text_UI and https://en.wikipedia.org/wiki/VGA-compatible_text_mode
  */
 
-#ifndef _ZENITHOS_ARCH_X86_VGA_MODE3_H_
-#define _ZENITHOS_ARCH_X86_VGA_MODE3_H_
+#pragma once
 
 #include <stdint.h>
 
@@ -31,5 +30,3 @@ namespace VGA{
 	uint8_t getY();
 
 }
-
-#endif
