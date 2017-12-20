@@ -32,22 +32,30 @@ _start:
 	cli
 	//call the C routine
 	call main
+	// Panic - should never return here
+	pushl $0x00000001
+	call panic
 //Don't do anything... forever.
+halt:
 	cli
-halt: hlt
+	hlt
 	//In case of a non-maskable interrupt, go back to the halt instruction
 	jmp halt
 .global panic
 panic:
 	pushl $_panic_msg
-	call _ZN3VGA4putsEPKc@PLT
+	call vgaputs
 	addl $4,%esp
 	movl 4(%esp),%eax
 	pushl $8
 	pushl $16
 	pushl %eax
-	call _ZN3VGA4putiEiii
+	call vgaputi
+//Put the error code back in %eax so that it can be examined in VM logs
+	addl $12, %esp
+	movl 4(%esp), %eax
 	jmp halt
+
 
 .section .rodata
 _panic_msg: .string "Kernel panic! Error code: "

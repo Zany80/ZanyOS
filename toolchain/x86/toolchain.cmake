@@ -13,6 +13,7 @@ set(CMAKE_C_FLAGS "-O3 -ffreestanding" CACHE STRING "C flags" FORCE)
 set(CMAKE_C_FLAGS_DEBUG "-ggdb -W -Wall -Wextra -Winline" CACHE STRING "C flags for debug version" FORCE)
 set(CMAKE_CXX_FLAGS "-O3 -ffreestanding" CACHE STRING "C flags" FORCE)
 set(CMAKE_CXX_FLAGS_DEBUG "-ggdb -W -Wall -Wextra -Winline" CACHE STRING "C flags for debug version" FORCE)
+set(CMAKE_ASM-ATT_FLAGS "-32")
 
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/toolchain/x86/linker.ld)
 set(CMAKE_EXE_LINKER_FLAGS "-ffreestanding -nostdlib -T${LINKER_SCRIPT}" CACHE STRING "Linker flags" FORCE)

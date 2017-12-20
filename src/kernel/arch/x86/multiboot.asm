@@ -11,8 +11,8 @@ multiboot_validate:
 	movl stack_bottom+4, %ebx
 	ret
 .not_found:
-	movl $0, %eax
-	jmp panic
+	pushl $0
+	call panic
 
 .section .rodata
 

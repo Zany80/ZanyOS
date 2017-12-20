@@ -23,10 +23,12 @@ void main(){
 	putch(VGA::getX(),VGA::getY(),'\n',VGA::white,VGA::black);
 	puts("Zenith80 starting up...\n");
 	multiboot_header * header;
+	// multiboot_validate() puts the address of the header in %ebx.
 	multiboot_validate();
-	asm("nop" : "=b"(header));
+	// no assembly is needed - just copies the address from %ebx to header
+	asm("" : "=b"(header));
 	puts("Multiboot header at ");
 	puti((int)header,16,8);
-	puts(", parsing...\n");
-	parse_multiboot(header,true);
+	puts(", gathering information...\n");
+	parse_multiboot(header,false);
 }

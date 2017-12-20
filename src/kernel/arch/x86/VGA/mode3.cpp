@@ -100,3 +100,11 @@ void VGA::scrollOnce(){
 	cursor.x=0;
 	cursor.y--;
 }
+
+extern "C" void vgaputs(const char *string){
+	VGA::puts(string);
+}
+
+extern "C" void vgaputi(int i,int base,int n){
+	VGA::puti(i,base,n);
+}
