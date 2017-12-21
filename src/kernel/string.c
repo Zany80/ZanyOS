@@ -11,12 +11,6 @@
 #include <string.h>
 #include <stdint.h>
 
-void swap(char * a,char *b){
-	char t=*a;
-	*a=*b;
-	*b=t;
-}
-
 /* A utility function to reverse a string  */
 void reverse(char str[], int length)
 {
@@ -24,7 +18,9 @@ void reverse(char str[], int length)
     int end = length -1;
     while (start < end)
     {
-        swap((str+start), (str+end));
+		char t = *(str+start);
+		*(str+start) = *(str+end);
+		*(str+end) = t;
         start++;
         end--;
     }
@@ -75,4 +71,15 @@ char* itoa(int num, char* str, int base,int minsize)
     reverse(str, i);
  
     return str;
+}
+
+int strcmp(const char * str1,const char * str2){
+	int offset = 0;
+	while (*(str1+offset) != 0 && *(str2+offset) != 0) {
+		if (*(str1+offset) != *(str2+offset)) {
+			return *(str1+offset) - *(str2+offset);
+		}
+		offset++;
+	}
+	return 0;
 }
